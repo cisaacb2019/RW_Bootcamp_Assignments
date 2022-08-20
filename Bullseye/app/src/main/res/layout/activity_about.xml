@@ -21,17 +21,17 @@
 
     <TextView
         android:id="@+id/AboutText"
-        android:layout_width="648dp"
-        android:layout_height="207dp"
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
         android:text="@string/about_bullseye_text"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AboutTitleText"
-        app:layout_constraintVertical_bias="0.452" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <Button
         android:id="@+id/button"
