@@ -1,20 +1,16 @@
 package com.example.bullseye
 
 import android.content.Intent
-//import android.content.res.Configuration
-//import android.content.pm.ActivityInfo
-//import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-//import android.os.PersistableBundle
-//import android.util.Log
+import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.bullseye.databinding.ActivityMainBinding
-//import java.lang.Math.abs
-//import java.lang.Math.random
-//import kotlin.math.log
+import java.lang.Math.abs
+import java.lang.Math.random
+import kotlin.math.log
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -41,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         }
         binding.startOverButton?.setOnClickListener {
-
         startNewGame()
         }
         binding.infoButton?.setOnClickListener{
@@ -60,8 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        savedInstanceState?.getInt("Score")
-        savedInstanceState?.getInt("Round")
+
     }
 
     private fun navigateToAboutPage() {
@@ -70,8 +65,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)//passes intent over to the start activity method to display
     }
 
-
-    private fun differenceAmount() = kotlin.math.abs(targetValue - sliderValue)
+    private fun differenceAmount() = abs(targetValue - sliderValue)
     private fun newTargetValue() = Random.nextInt(1,100)
 
     private fun pointsForCurrentRound(): Int {
@@ -92,10 +86,10 @@ class MainActivity : AppCompatActivity() {
         return (maxScore - difference) + bonusPoints()
     }
     private fun startNewGame() {
-            totalScore = 0
-            totalRound = 1
-            sliderValue = 50
-            targetValue = newTargetValue()
+        totalScore = 0
+        totalRound = 1
+        sliderValue = 50
+        targetValue = newTargetValue()
 
         binding.gameScoreTextView?.text = totalScore.toString()
         binding.gameRoundTextView?.text = totalRound.toString()
@@ -145,21 +139,14 @@ class MainActivity : AppCompatActivity() {
         return title
     }
     private fun bonusPoints(): Int {
-        val  bonus: Int = when (differenceAmount()) {
-            0 -> 100
-            1 -> 50
+        val difference = differenceAmount()
+        val  bonus: Int = when {
+        difference == 0 -> 100
+        difference == 1 -> 50
             else -> 0
         }
 
 
             return bonus
         }
-// data store attempt, please ignore I don't know much about it but will learn more about it shortly...
-//    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-//        super.onSaveInstanceState(outState, outPersistentState)
-//        outState.putInt("Score",totalScore)
-//        outState.putInt("Round",totalRound)
-//    }
-
-
     }
